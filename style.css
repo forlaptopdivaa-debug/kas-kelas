@@ -1,0 +1,243 @@
+/* ==========================================================================
+   KASKITA - STYLESHEET
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+:root {
+    --primary: #0D9488;
+    --primary-dark: #0F766E;
+    --primary-light: #CCFBF1;
+    --bg-color: #F3F4F6;
+    --card-bg: #FFFFFF;
+    --text-main: #1F2937;
+    --text-muted: #6B7280;
+    --danger: #EF4444;
+    --danger-light: #FEE2E2;
+    --success: #10B981;
+    --success-light: #D1FAE5;
+    --border: #E5E7EB;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.5;
+    padding-bottom: 3rem;
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+}
+
+header p {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.container {
+    max-width: 1000px;
+    margin: -1.5rem auto 0 auto;
+    padding: 0 1rem;
+}
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.card-stat {
+    background: var(--card-bg);
+    padding: 1.25rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    border-left: 5px solid var(--primary);
+}
+
+.card-stat.in { border-left-color: var(--success); }
+.card-stat.out { border-left-color: var(--danger); }
+
+.card-stat h3 {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.card-stat .amount {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-top: 0.4rem;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .main-grid { grid-template-columns: 1fr; }
+}
+
+.card {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    border: 1px solid var(--border);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    color: var(--primary-dark);
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn:hover { background-color: var(--primary-dark); }
+
+.btn-wa { background-color: #25D366; }
+.btn-wa:hover { background-color: #1DA851; }
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    width: auto;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+}
+
+.filter-controls {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.filter-controls input { flex: 2; }
+.filter-controls select { flex: 1; }
+
+/* LIST TRANSAKSI & SISWA */
+.tx-list, .student-list {
+    list-style: none;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 0.2rem;
+}
+
+.tx-item, .student-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem;
+    border-radius: 8px;
+    background-color: #FAFAFA;
+    border: 1px solid var(--border);
+    margin-bottom: 0.5rem;
+}
+
+.tx-info .title, .student-name { font-weight: 600; font-size: 0.9rem; }
+.tx-info .date { font-size: 0.75rem; color: var(--text-muted); }
+.tx-amount.masuk { color: var(--success); font-weight: 700; }
+.tx-amount.keluar { color: var(--danger); font-weight: 700; }
+
+/* Badge Status Kas Siswa */
+.badge-status {
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.badge-status.lunas { background-color: var(--success-light); color: var(--success); }
+.badge-status.belum { background-color: var(--danger-light); color: var(--danger); }
+
+.btn-delete {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+.btn-delete:hover { color: var(--danger); }
+
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 1rem;
+    font-size: 0.85rem;
+}
+
+.action-bar {
+    display: flex;
+    gap: 0.5rem;
+}
