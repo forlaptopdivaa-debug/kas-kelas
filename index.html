@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KasKita - Transparansi Uang Kas Kelas</title>
+    <meta name="theme-color" content="#0D9488">
+    <!-- Hubungkan CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- HEADER APLIKASI -->
+    <header>
+        <h1>💰 KasKita</h1>
+        <p>Transparansi Uang Kas Kelas & Status Pembayaran Siswa</p>
+    </header>
+
+    <div class="container">
+        <!-- DASHBOARD SALDO & REKAP -->
+        <div class="dashboard">
+            <div class="card-stat">
+                <h3>Total Saldo Kas</h3>
+                <div class="amount" id="totalBalance">Rp 0</div>
+            </div>
+            <div class="card-stat in">
+                <h3>Total Pemasukan</h3>
+                <div class="amount" id="totalIncome" style="color: var(--success);">Rp 0</div>
+            </div>
+            <div class="card-stat out">
+                <h3>Total Pengeluaran</h3>
+                <div class="amount" id="totalExpense" style="color: var(--danger);">Rp 0</div>
+            </div>
+        </div>
+
+        <div class="main-grid">
+            <!-- KOLOM KIRI: FORM & PENGATURAN -->
+            <div>
+                <!-- FORM INPUT TRANSAKSI -->
+                <div class="card" style="margin-bottom: 1.5rem;">
+                    <h2>➕ Catat Transaksi Umum</h2>
+                    <form id="txForm">
+                        <div class="form-group">
+                            <label for="txType">Jenis Transaksi</label>
+                            <select id="txType" required>
+                                <option value="masuk">🟢 Kas Masuk (Pemasukan)</option>
+                                <option value="keluar">🔴 Kas Keluar (Pengeluaran)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txTitle">Keterangan / Keperluan</label>
+                            <input type="text" id="txTitle" placeholder="Contoh: Beli Spidol / Sumbangan" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txAmount">Nominal (Rp)</label>
+                            <input type="number" id="txAmount" placeholder="Contoh: 15000" min="1" required>
+                        </div>
+
+                        <button type="submit" class="btn">💾 Simpan Transaksi</button>
+                    </form>
+                </div>
+
+                <!-- MENU AKSI LAINNYA -->
+                <div class="card">
+                    <h2>⚙️ Aksi & Bagikan</h2>
+                    <button class="btn btn-wa" onclick="shareToWhatsApp()" style="margin-bottom: 0.8rem;">
+                        📲 Bagikan Rekap ke WA Kelas
+                    </button>
+                    <div class="action-bar">
+                        <button class="btn btn-outline" style="flex:1;" onclick="exportData()">📥 Cadangan</button>
+                        <button class="btn btn-outline" style="flex:1; color: var(--danger);" onclick="resetData()">🗑️ Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KOLOM KANAN: STATUS KAS SISWA & RIWAYAT -->
+            <div>
+                <!-- BAGIAN 1: CEK STATUS KAS PER ANAK (Rp 5.000) -->
+                <div class="card" style="margin-bottom: 1.5rem;">
+                    <div class="card-header">
+                        <h2>👥 Status Kas Siswa (Rp 5.000)</h2>
+                        <span id="studentCount" style="font-size: 0.8rem; background: var(--primary-light); color: var(--primary-dark); padding: 0.2rem 0.6rem; border-radius: 999px; font-weight: 600;">0 Siswa</span>
+                    </div>
+                    
+                    <!-- Form Tambah Nama Siswa / Bayar Kas -->
+                    <form id="studentForm" style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+                        <input type="text" id="studentName" placeholder="Nama Siswa (Cth: Budi)" required style="flex: 2;">
+                        <select id="studentStatus" style="flex: 1;">
+                            <option value="lunas">Lunas</option>
+                            <option value="belum">Belum</option>
+                        </select>
+                        <button type="submit" class="btn" style="width: auto; padding: 0.7rem 1rem;">Tambah</button>
+                    </form>
+
+                    <!-- Daftar Status Siswa -->
+                    <ul class="student-list" id="studentList">
+                        <!-- Dimuat dinamis JS -->
+                    </ul>
+                </div>
+
+                <!-- BAGIAN 2: RIWAYAT TRANSAKSI -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2>📜 Riwayat Transaksi</h2>
+                        <span id="txCount" style="font-size: 0.8rem; background: var(--primary-light); color: var(--primary-dark); padding: 0.2rem 0.6rem; border-radius: 999px; font-weight: 600;">0 Transaksi</span>
+                    </div>
+
+                    <div class="filter-controls">
+                        <input type="text" id="searchInput" placeholder="🔍 Cari transaksi..." oninput="renderUI()">
+                        <select id="filterType" onchange="renderUI()">
+                            <option value="all">Semua</option>
+                            <option value="masuk">Pemasukan</option>
+                            <option value="keluar">Pengeluaran</option>
+                        </select>
+                    </div>
+
+                    <ul class="tx-list" id="txList">
+                        <!-- Dimuat dinamis JS -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>KasKita App</strong> &copy; 2026 - Dibuat untuk Siswa SMA/SMK | GitHub Pages Ready</p>
+        </footer>
+    </div>
+
+    <!-- Hubungkan JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
