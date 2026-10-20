@@ -130,5 +130,37 @@
 
     <!-- Hubungkan JavaScript -->
     <script src="script.js"></script>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KasKita - Transparansi Uang Kas Kelas</title>
+    <meta name="theme-color" content="#0D9488">
+    
+    <!-- PWA Meta Tag & Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2953/2953363.png">
+
+    <!-- Hubungkan CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- KONTEN APLIKASI KASKITA SEPERTI SEBELUMNYA -->
+
+    <!-- Hubungkan JS Aplikasi -->
+    <script src="script.js"></script>
+
+    <!-- REGISTER SERVICE WORKER UNTUK PWA OFFLINE -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((reg) => console.log('Service Worker berhasil terdaftar:', reg.scope))
+                    .catch((err) => console.error('Gagal mendaftarkan Service Worker:', err));
+            });
+        }
+    </script>
 </body>
-</html>
+</html> 
